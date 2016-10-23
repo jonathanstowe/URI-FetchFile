@@ -15,7 +15,6 @@ else {
     die "couldn't get file";
 }
 
-
 ```
 
 ## Description
@@ -41,6 +40,17 @@ Please feel free to suggest and/or implement other mechanisms.
 
 ## Installation
 
+Assuming you have a working installation of Rakudo perl6 you cam install
+this using either ```zef``` or ```panda```:
+
+	zef install URI::FetchFile
+
+	# or
+
+	panda install URI::FetchFile
+
+
+Other mechanisms may become available in the future.
 
 ## Support
 

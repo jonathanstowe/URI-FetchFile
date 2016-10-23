@@ -10,6 +10,19 @@ URI::FetchFile - retrieve a file from the internet by any means necessary
 
 =head1 SYNOPSIS
 
+=begin code
+
+use URI::FetchFile;
+
+if fetch-uri('http://rakudo.org/downloads/star/rakudo-star-2016.10.tar.gz', 'rakudo-star-2016.10.tar.gz') {
+    # do something with the file
+}
+else {
+    die "couldn't get file";
+}
+
+=end code
+
 =head1 DESCRIPTION
 
 This provides a simple method of retrieving a single file via HTTP using the
@@ -147,5 +160,35 @@ class URI::FetchFile {
         }
     }
 
+    class X::NoProvider is Exception {
+        method message() returns Str {
+            "No working provider can be found to fetch file";
+        }
+    }
+
+    my @providers = (Provider::HTTP::UserAgent, Provider::LWP::Simple, Provider::Curl, Provider::Wget);
+
+    method set-providers(*@new-providers) {
+        @providers = @new-providers.grep(Provider);
+    }
+
+    sub fetch-uri(Str $uri, Str $file ) returns Bool is export(:DEFAULT) {
+        my Bool $rc = False;
+
+        my Int $tried = 0;
+        for @providers -> $provider {
+            if $provider.is-available {
+                $rc = $provider.fetch(:$uri, :$file);
+                last;
+            }
+            else {
+                $tried++;
+            }
+        }
+        if $tried == @providers.elems {
+            X::NoProvider.new.throw;
+        }
+        $rc;
+    }
 }
 # vim: expandtab shiftwidth=4 ft=perl6

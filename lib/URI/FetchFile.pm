@@ -1,5 +1,7 @@
 use v6.c;
 
+use File::Which;
+
 =begin pod
 
 =head1 NAME
@@ -37,9 +39,51 @@ Failing if it can't use any of them.
 class URI::FetchFile {
 
     role Provider {
+        method fetch(Provider:U: :$uri, :$file) returns Bool {
+            ...
+        }
+
+        method is-available() returns Bool {
+            ...
+        }
+    }
+
+    class X::NotFound is Exception {
+    }
+
+    role Executable[Str $executable-name] {
+
+        my Str $executable;
+
+        method executable-name() returns Str {
+            $executable-name;
+        }
+
+        method executable() returns Str {
+            if ! $executable.defined {
+                $executable = which($executable-name);
+            }
+            $executable;
+        }
+
+        method is-available() returns Bool {
+            so $.executable;
+        }
 
     }
 
+    class Provider::Curl does Executable['curl'] does Provider {
+        method fetch(:$uri, :$file) returns Bool {
+            my $rc = False;
+            if $.is-available {
+                my $p = run($.executable,'-f', '-s', '-o', $file, $uri );
+                if !$p.exitcode {
+                    $rc = True;
+                }
+            }
+            return $rc;
+        }
+    }
 
 }
 # vim: expandtab shiftwidth=4 ft=perl6

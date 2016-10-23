@@ -22,13 +22,10 @@ It will try to use the first available method from:
 
 	* LWP::Simple
 
-	* Net::Curl
-
 	* curl
 
 	* wget
 
-	* lynx
 
 Please feel free to suggest and/or implement other mechanisms.
 

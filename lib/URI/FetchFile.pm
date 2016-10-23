@@ -24,13 +24,9 @@ It will try to use the first available method from:
 
 =item LWP::Simple
 
-=item Net::Curl
-
 =item curl
 
 =item wget
-
-=item lynx
 
 Failing if it can't use any of them.
 

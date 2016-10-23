@@ -6,6 +6,16 @@ Perl6 module to retrieve a file from the internet by the best available method
 
 ```perl6
 
+use URI::FetchFile;
+
+if fetch-uri('http://rakudo.org/downloads/star/rakudo-star-2016.10.tar.gz', 'rakudo-star-2016.10.tar.gz') {
+    # do something with the file
+}
+else {
+    die "couldn't get file";
+}
+
+
 ```
 
 ## Description

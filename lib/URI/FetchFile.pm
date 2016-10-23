@@ -85,5 +85,22 @@ class URI::FetchFile {
         }
     }
 
+    class Provider::Wget does Executable['wget'] does Provider {
+        method fetch(:$uri, :$file) returns Bool {
+            my $rc = False;
+            if $.is-available {
+                my $p = run($.executable,'-q', '-O', $file, $uri );
+                if !$p.exitcode {
+                    $rc = True;
+                }
+                else {
+                    # wget will create the file even if it doesn't retrieve anything
+                    $file.IO.unlink if $file.IO.e;
+                }
+            }
+            return $rc;
+        }
+    }
+
 }
 # vim: expandtab shiftwidth=4 ft=perl6

@@ -79,6 +79,27 @@ class URI::FetchFile {
         }
     }
 
+    class Provider::HTTP::UserAgent does Class['HTTP::UserAgent'] does Provider {
+        method fetch(:$uri, :$file) returns Bool {
+            my Bool $rc = False;
+            if $.is-available {
+	            my $res =  $.type.new.get($uri);
+	            if $res.is-success {
+		            my $out = $file.IO.open(:w);
+		            if $res.is-binary {
+			            $out.write: $res.content;
+		            }
+		            else {
+			            $out.print: $res.content;
+		            }
+		            $out.close;
+                    $rc = True;
+	            }
+            }
+            $rc;
+        }
+    }
+
     role Executable[Str $executable-name] {
 
         my Str $executable;

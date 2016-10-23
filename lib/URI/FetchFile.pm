@@ -48,7 +48,35 @@ class URI::FetchFile {
         }
     }
 
-    class X::NotFound is Exception {
+    role Class[Str $class-name] {
+        my $type;
+        method class-name() returns Str {
+            $class-name;
+        }
+
+        my Bool $tried = False;
+
+        method type() {
+            if ! $tried {
+                $type = try require ::($class-name);
+            }
+            $type;
+        }
+
+        method is-available() returns Bool {
+            not $.type === Any;
+        }
+    }
+
+    class Provider::LWP::Simple does Class['LWP::Simple'] does Provider {
+        method fetch(:$uri, :$file) returns Bool {
+            my Bool $rc = False;
+
+            if $.is-available {
+                $rc = $.type.getstore($uri, $file);
+            }
+            $rc;
+        }
     }
 
     role Executable[Str $executable-name] {

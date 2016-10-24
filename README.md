@@ -2,6 +2,8 @@
 
 Perl6 module to retrieve a file from the internet by the best available method
 
+[![Build Status](https://travis-ci.org/jonathanstowe/URI-FetchFile.svg?branch=master)](https://travis-ci.org/jonathanstowe/URI-FetchFile)
+
 ## Synopsis
 
 ```perl6

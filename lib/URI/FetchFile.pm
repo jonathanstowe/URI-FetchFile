@@ -41,7 +41,19 @@ It will try to use the first available method from:
 
 =item wget
 
-Failing if it can't use any of them.
+Failing with a C<X::NoProvider> if it can't use any of them.
+
+
+=head1 ROUTINES
+
+=head2 sub fetch-uri
+
+    sub fetch-uri(Str $uri, Str $file ) returns Bool is export(:DEFAULT)
+
+This will attempt to get the resource identified by URI and save the
+returned resource in the specified $file.  If the resource cannot be
+retrieved then this will return False (and the file won't be created.)
+If none of the providers are available an exception will be thrown.
 
 =end pod
 

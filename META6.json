@@ -16,7 +16,7 @@
   "depends": [
   ],
   "tags": [ "download", "utility", "http" ],
-  "license": "perl",
+  "license": "Artistic-2.0",
   "test-depends": [
      "Test"
   ],

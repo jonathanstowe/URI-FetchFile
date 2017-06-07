@@ -13,7 +13,7 @@
   ],
   "auth": "github:jonathanstowe",
   "depends": [
-    
+      "File::Which"
   ],
   "tags": [
     "download",

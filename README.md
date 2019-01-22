@@ -55,6 +55,6 @@ Please make any reports, suggestions etc to https://github.com/jonathanstowe/URI
 
 ## Licence and Copyright
 
-© Jonathan Stowe 2016, 2017
+© Jonathan Stowe 2016 - 2019
 
 This is free software please see the the [LICENCE](LICENCE) file for details.

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl6
 
-use v6.c;
+use v6;
 
 use Test;
 plan 8;
@@ -16,7 +16,7 @@ is $type.executable-name, 'curl', "got executable name";
 lives-ok { $executable = $type.executable }, "executable";
 
 if $type.is-available {
-    lives-ok { 
+    lives-ok {
         nok $type.fetch(uri => 'http://rabidgravy.com/NotThEre', file => 'test-output'), "get with a 404";
     }, "fetch on a non-existent file";
     nok 'test-output'.IO.e, "and the file didn't get created";

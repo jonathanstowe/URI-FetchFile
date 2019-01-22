@@ -60,37 +60,37 @@ If none of the providers are available an exception will be thrown.
 class URI::FetchFile {
 
     role Provider {
-        method fetch(Provider:U: :$uri, :$file) returns Bool {
+        method fetch(Provider:U: :$uri, :$file --> Bool ) {
             ...
         }
 
-        method is-available() returns Bool {
+        method is-available( --> Bool ) {
             ...
         }
     }
 
     role Class[Str $class-name] {
         my $type;
-        method class-name() returns Str {
+        method class-name( --> Str ) {
             $class-name;
         }
 
         my Bool $tried = False;
 
-        method type() {
+        method type( --> Mu ) {
             if ! $tried {
                 $type = try require ::($class-name);
             }
             $type;
         }
 
-        method is-available() returns Bool {
+        method is-available( --> Bool ) {
             not $.type === Any;
         }
     }
 
     class Provider::LWP::Simple does Class['LWP::Simple'] does Provider {
-        method fetch(:$uri, :$file) returns Bool {
+        method fetch(:$uri, :$file --> Bool ) {
             my Bool $rc = False;
 
             if $.is-available {
@@ -101,7 +101,7 @@ class URI::FetchFile {
     }
 
     class Provider::HTTP::UserAgent does Class['HTTP::UserAgent'] does Provider {
-        method fetch(:$uri, :$file) returns Bool {
+        method fetch(:$uri, :$file --> Bool ) {
             my Bool $rc = False;
             if $.is-available {
                 my $res =  $.type.new.get($uri);
@@ -125,25 +125,25 @@ class URI::FetchFile {
 
         my Str $executable;
 
-        method executable-name() returns Str {
+        method executable-name( --> Str ) {
             $executable-name;
         }
 
-        method executable() returns Str {
+        method executable( --> Str ) {
             if ! $executable.defined {
                 $executable = which($executable-name) // Str;
             }
             $executable;
         }
 
-        method is-available() returns Bool {
+        method is-available( --> Bool ) {
             so $.executable;
         }
 
     }
 
     class Provider::Curl does Executable['curl'] does Provider {
-        method fetch(:$uri, :$file) returns Bool {
+        method fetch(:$uri, :$file --> Bool ) {
             my $rc = False;
             if $.is-available {
                 my $p = run($.executable,'-f', '-s', '-o', $file, $uri );
@@ -156,7 +156,7 @@ class URI::FetchFile {
     }
 
     class Provider::Wget does Executable['wget'] does Provider {
-        method fetch(:$uri, :$file) returns Bool {
+        method fetch(:$uri, :$file --> Bool ) {
             my $rc = False;
             if $.is-available {
                 my $p = run($.executable,'-q', '-O', $file, $uri );
@@ -173,7 +173,7 @@ class URI::FetchFile {
     }
 
     class X::NoProvider is Exception {
-        method message() returns Str {
+        method message( --> Str ) {
             "No working provider can be found to fetch file";
         }
     }
@@ -184,7 +184,7 @@ class URI::FetchFile {
         @providers = @new-providers.grep(Provider);
     }
 
-    sub fetch-uri(Str $uri, Str $file ) returns Bool is export(:DEFAULT) {
+    sub fetch-uri(Str $uri, Str $file --> Bool ) is export(:DEFAULT) {
         my Bool $rc = False;
 
         my Int $tried = 0;

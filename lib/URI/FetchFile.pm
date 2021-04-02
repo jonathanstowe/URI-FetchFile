@@ -203,4 +203,4 @@ class URI::FetchFile {
         $rc;
     }
 }
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: expandtab shiftwidth=4 ft=raku

@@ -1,12 +1,12 @@
 # URI-FetchFile
 
-Perl6 module to retrieve a file from the internet by the best available method
+Raku module to retrieve a file from the internet by the best available method
 
-[![Build Status](https://travis-ci.org/jonathanstowe/URI-FetchFile.svg?branch=master)](https://travis-ci.org/jonathanstowe/URI-FetchFile)
+![Build Status](https://github.com/jonathanstowe/URI-FetchFile/workflows/CI/badge.svg)
 
 ## Synopsis
 
-```perl6
+```raku
 
 use URI::FetchFile;
 
@@ -42,8 +42,7 @@ Please feel free to suggest and/or implement other mechanisms.
 
 ## Installation
 
-Assuming you have a working installation of Rakudo perl6 you can install
-this using ```zef``` : 
+Assuming you have a working installation of Rakudo you can install this using ```zef``` : 
 
 	zef install URI::FetchFile
 
@@ -51,10 +50,10 @@ Other mechanisms may become available in the future.
 
 ## Support
 
-Please make any reports, suggestions etc to https://github.com/jonathanstowe/URI-FetchFile/issues
+Please make any reports, suggestions etc to [Github](https://github.com/jonathanstowe/URI-FetchFile/issues)
 
 ## Licence and Copyright
 
-© Jonathan Stowe 2016 - 2019
-
 This is free software please see the the [LICENCE](LICENCE) file for details.
+
+© Jonathan Stowe 2016 - 2021

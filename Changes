@@ -1,3 +1,5 @@
+v0.0.5	Sun  7 Aug 09:47:57 BST 2022
+	* Upload to zef repository
 v0.0.4		Fri  2 Apr 10:24:05 BST 2021
 	* Renaming and move to GH actions
 v0.0.3      Tue 22 Jan 13:20:16 GMT 2019
@@ -7,3 +9,4 @@ v0.0.2      Wed Jun 7 13:55:55 2017 +0100
 v0.0.1		Mon Oct 24 20:48:27 2016 +0100 
 	* Initial release
 	* Up version
+

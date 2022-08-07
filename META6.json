@@ -1,34 +1,35 @@
 {
-  "name": "URI::FetchFile",
-  "auth": "github:jonathanstowe",
-  "version": "0.0.4",
-  "api": "1.0",
-  "description": "retrieve a file from the internet by the best available method",
   "source-url": "https://github.com/jonathanstowe/URI-FetchFile.git",
+  "version": "0.0.5",
   "support": {
     "source": "https://github.com/jonathanstowe/URI-FetchFile.git"
   },
-  "perl": "6.*",
-  "raku": "6.*",
-  "resources": [],
-  "build-depends": [],
   "depends": [
-      "File::Which"
+    "File::Which"
   ],
+  "license": "Artistic-2.0",
+  "auth": "zef:jonathanstowe",
+  "test-depends": [
+    "Test"
+  ],
+  "meta-version": "1",
+  "name": "URI::FetchFile",
+  "authors": [
+    "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
+  ],
+  "resources": [
+  ],
+  "build-depends": [
+  ],
+  "api": "1.0",
   "tags": [
     "download",
     "utility",
     "http"
   ],
-  "license": "Artistic-2.0",
-  "test-depends": [
-    "Test"
-  ],
+  "raku": "6.*",
   "provides": {
     "URI::FetchFile": "lib/URI/FetchFile.pm"
   },
-  "authors": [
-    "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
-  ],
-  "meta-version": "1"
+  "description": "retrieve a file from the internet by the best available method"
 }

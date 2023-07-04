@@ -54,7 +54,7 @@
           "name": "URI",
           "children": [
             {
-              "name": "FetchFile.pm",
+              "name": "FetchFile.rakumod",
               "type": "file"
             }
           ],

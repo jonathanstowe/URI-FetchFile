@@ -1,6 +1,6 @@
 {
   "source-url": "https://github.com/jonathanstowe/URI-FetchFile.git",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "support": {
     "source": "https://github.com/jonathanstowe/URI-FetchFile.git"
   },
@@ -29,7 +29,7 @@
   ],
   "raku": "6.*",
   "provides": {
-    "URI::FetchFile": "lib/URI/FetchFile.pm"
+    "URI::FetchFile": "lib/URI/FetchFile.rakumod"
   },
   "description": "retrieve a file from the internet by the best available method"
 }
